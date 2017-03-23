@@ -1,3 +1,4 @@
+//main.c: used to test functionality of binary search tree methods
 #include <stdio.h>
 #include <ctype.h>
 #include <string.h>
@@ -73,7 +74,7 @@ int main(void) {
     populate_tree("small_url.txt", &root);
 	
 	test_print(root, 7, Expected_URLs_small, Expected_Url_Freq_small);
-	tree_traversal(0, root, node_urls, url_frequency);						//*****
+	tree_traversal(0, root, node_urls, url_frequency);					
     
     populate_tree("long_url.txt", &root);
 	//assert( lookup(root, "vonage.com") == 2323);
