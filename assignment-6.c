@@ -25,28 +25,28 @@ struct tnode* add_to_tree(struct tnode* root, char* URL) {
 	if (root == NULL) {
 		struct tnode* temp = (struct tnode*)malloc(sizeof(struct tnode));
 		temp->count = 1;
-		temp->key = (char*)malloc(sizeof(char)*MAX_URL_LENGTH);						//****
+		temp->key = (char*)malloc(sizeof(char)*MAX_URL_LENGTH);					
 		strcpy(temp->key, URL);
 		temp->left = NULL;
 		temp->right = NULL;
 		return(temp);
 	}
 
-	if (strcmp(URL, Temp->key) == 0) {												//URL match
+	if (strcmp(URL, Temp->key) == 0) {				//URL match
 		Temp->count = Temp->count + 1;
 		return(Temp);
 	}
 
-	if (strcmp(URL, Temp->key) >0) {												//URL is larger (right)
+	if (strcmp(URL, Temp->key) >0) {				//URL is larger (right)
 
 		if (Temp->right == NULL) {
 			struct tnode* right = (struct tnode*)malloc(sizeof(struct tnode));
 			right->count = 1;
-			right->key = (char*)malloc(sizeof(char)*MAX_URL_LENGTH);				//*****
+			right->key = (char*)malloc(sizeof(char)*MAX_URL_LENGTH);				
 			strcpy(right->key, URL);
 			right->left = NULL;
 			right->right = NULL;
-			Temp->right = right;													//connetion
+			Temp->right = right;			//stitching nodes
 			return(Temp);
 		}
 		
@@ -54,7 +54,7 @@ struct tnode* add_to_tree(struct tnode* root, char* URL) {
 		add_to_tree(Temp->right, URL);
 	}
 
-	if (strcmp(URL, Temp->key) <0) {												//URL smaller (left)
+	if (strcmp(URL, Temp->key) <0) {			//URL smaller (left)
 
 		if (Temp->left == NULL) {
 			struct tnode* left = (struct tnode*)malloc(sizeof(struct tnode));
@@ -63,14 +63,13 @@ struct tnode* add_to_tree(struct tnode* root, char* URL) {
 			strcpy(left->key, URL);
 			left->left = NULL;
 			left->right = NULL;
-			Temp->left = left;														//connetion
+			Temp->left = left;			//stitching nodes
 			return(Temp);
 		}
 		add_to_tree(Temp->left, URL);
 	}
 
 	return(root);
-    //fix the broken implementation
 }
 
 
@@ -93,9 +92,6 @@ struct tnode* add_to_tree(struct tnode* root, char* URL) {
 	 }
 
 	 closeFile();
-
-
-    //implement this section :) 
  }
 
 
@@ -111,7 +107,7 @@ struct tnode* add_to_tree(struct tnode* root, char* URL) {
 	 int frequency=0;
 	 struct tnode *temp = p;
 
-	 if (temp == NULL) {						/////
+	 if (temp == NULL) {						
 		 return(0);
 	 }
 
@@ -145,7 +141,7 @@ struct tnode* add_to_tree(struct tnode* root, char* URL) {
   */ 
 int tree_traversal(int size, struct tnode* p, char URL_array[][MAX_URL_LENGTH], int* frequencies) {
 	if (p->left != NULL) {
-		size = tree_traversal(size, p->left, URL_array, frequencies);
+		size = tree_traversal(size, p->left, URL_array, frequencies);	//recursive call
 	}
 	strcpy(URL_array[size], p->key);
 	frequencies[size] = p->count;
@@ -153,7 +149,7 @@ int tree_traversal(int size, struct tnode* p, char URL_array[][MAX_URL_LENGTH], 
 
 
 	if (p->right != NULL) {
-		size = tree_traversal(size, p->right, URL_array, frequencies);
+		size = tree_traversal(size, p->right, URL_array, frequencies);	//recursive call
 	}
 
 
