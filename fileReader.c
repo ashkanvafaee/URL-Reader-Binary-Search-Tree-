@@ -1,3 +1,4 @@
+//FileReader.c: used to read inputs (URL strings) from a .txt file.
 #define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
 #include <stdlib.h>
